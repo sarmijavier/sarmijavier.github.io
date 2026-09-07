@@ -1,175 +1,142 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import Reveal from "@/components/reveal";
 
-export default async function Experience() {
+type Role = {
+  company: string;
+  title: string;
+  period: string;
+  location: string;
+  summary: string;
+  highlights: { label: string; body: string }[];
+};
+
+const roles: Role[] = [
+  {
+    company: "Wazoku",
+    title: "Software Engineer",
+    period: "May 2023 to May 2025 · 2 yrs",
+    location: "Remote",
+    summary:
+      "Contributed across multiple cross-functional teams to evolve and scale an enterprise SaaS platform.",
+    highlights: [
+      {
+        label: "AI team",
+        body: "Built frontend and backend for an AI-powered agent, extending user interaction through automation.",
+      },
+      {
+        label: "Frontend modernization",
+        body: "Migrated a critical legacy module from AngularJS to modern Angular, improving maintainability.",
+      },
+      {
+        label: "Survey feature redesign",
+        body: "Led a high-impact product enhancement, reworking the survey feature with the product team.",
+      },
+      {
+        label: "New homepage initiative",
+        body: "Provided backend support for a new homepage experience: performant APIs and reusable services.",
+      },
+      {
+        label: "Analytics team",
+        body: "Supported backend and infrastructure for data-driven insights and client reporting.",
+      },
+    ],
+  },
+  {
+    company: "Datarte.art",
+    title: "Full-Stack Developer",
+    period: "Feb 2021 to Aug 2022 · 1 yr 6 mos",
+    location: "Remote",
+    summary:
+      "Built and maintained full-stack web applications end to end, from infrastructure to interface.",
+    highlights: [
+      {
+        label: "Web applications",
+        body: "Built two full-stack apps, Datarte and OtrasManeras, for artist artwork management using React, Gatsby, WordPress, and Flask.",
+      },
+      {
+        label: "Cloud infrastructure",
+        body: "Deployed and managed AWS services (EC2, RDS, S3) for UK clients CityRelay and CityRelaySolutions.",
+      },
+      {
+        label: "Data and automation",
+        body: "Built scrapers, migration tooling, and dashboards using Python, SQL, and Metabase.",
+      },
+      {
+        label: "Testing and quality",
+        body: "Implemented testing with Cypress, Pytest, and Selenium, and helped establish best practices.",
+      },
+    ],
+  },
+  {
+    company: "Catholic University of Colombia",
+    title: "Research Collaborator",
+    period: "Apr 2020 to Nov 2020 · 8 mos",
+    location: "Colombia · Remote",
+    summary:
+      "Researched wearable SDKs and built prototypes to collect physiological signal data in real time.",
+    highlights: [
+      {
+        label: "Fitbit SDK research",
+        body: "Built a full smartwatch app streaming heart rate and calorie data to a web-socket server on Heroku.",
+      },
+      {
+        label: "Academic collaboration",
+        body: "Worked with three professors and a student team, supporting research with Complutense University of Madrid.",
+      },
+    ],
+  },
+];
+
+export default function Experience() {
   return (
-	<section className="flex flex-col gap-6 md:gap-8 items-center justify-center mt-8 md:mt-10">
-	<h1 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-		Experience
-	</h1>
-	<Accordion type="single" collapsible className="w-full">
-		<AccordionItem value="item-1">
-		<AccordionTrigger className="text-base md:text-lg">
-			Wazoku
-		</AccordionTrigger>
-		<AccordionContent>
-			<div className="space-y-3 md:space-y-4">
-			<div className="flex justify-between items-start">
-				<div>
-				<h3 className="font-medium text-base md:text-lg">Software Engineer</h3>
-				<p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">May 2023 - May 2025 · 2 yrs</p>
-				<p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Remote</p>
-				</div>
-			</div>
+    <section id="experience" className="border-t border-line px-5 py-24 md:px-10 md:py-40">
+      <div className="mx-auto max-w-5xl">
+        <Reveal>
+          <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+            Experience
+          </h2>
+        </Reveal>
 
-			<p className="text-sm md:text-base text-gray-600 dark:text-gray-400">
-				Contributed across multiple cross-functional teams to evolve and scale an enterprise SaaS platform.
-			</p>
+        <div className="mt-14 md:mt-20">
+          {roles.map((role, i) => (
+            <div
+              key={role.company}
+              className="sticky bg-background pt-10 pb-14 first:border-t-0 border-t border-line md:pt-14 md:pb-20"
+              style={{ top: `${72 + i * 16}px`, zIndex: i + 1 }}
+            >
+              <div className="grid gap-6 md:grid-cols-[0.9fr_1.6fr] md:gap-12">
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground md:text-2xl">
+                    {role.title}
+                  </h3>
+                  <p className="mt-1 text-base text-signal">{role.company}</p>
+                  <p className="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-ink-soft">
+                    {role.period}
+                  </p>
+                  <p className="font-mono text-xs uppercase tracking-[0.12em] text-ink-soft">
+                    {role.location}
+                  </p>
+                </div>
 
-			<div className="space-y-3 md:space-y-4">
-				<div className="flex items-start gap-3">
-				<div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900">
-					<span className="text-purple-600 dark:text-purple-300">🤖</span>
-				</div>
-				<div>
-					<h4 className="font-medium text-base md:text-lg">AI Team</h4>
-					<p className="text-sm md:text-base text-gray-600 dark:text-gray-400">Supported frontend and backend development for an AI-powered agent, enhancing user interaction through intelligent automation.</p>
-				</div>
-				</div>
-
-				<div className="flex items-start gap-3">
-				<div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900">
-					<span className="text-blue-600 dark:text-blue-300">🔄</span>
-				</div>
-				<div>
-					<h4 className="font-medium text-base md:text-lg">Frontend Modernization</h4>
-					<p className="text-sm md:text-base text-gray-600 dark:text-gray-400">Migrated critical legacy module from AngularJS to modern Angular, improving maintainability and performance.</p>
-				</div>
-				</div>
-
-				<div className="flex items-start gap-3">
-				<div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
-					<span className="text-green-600 dark:text-green-300">📊</span>
-				</div>
-				<div>
-					<h4 className="font-medium text-base md:text-lg">Feature Redesign – Surveys</h4>
-					<p className="text-sm md:text-base text-gray-600 dark:text-gray-400">Led high-impact product enhancement by reworking survey feature, collaborating with product team.</p>
-				</div>
-				</div>
-
-				<div className="flex items-start gap-3">
-				<div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-yellow-100 dark:bg-yellow-900">
-					<span className="text-yellow-600 dark:text-yellow-300">🏠</span>
-				</div>
-				<div>
-					<h4 className="font-medium text-base md:text-lg">New Homepage Initiative</h4>
-					<p className="text-sm md:text-base text-gray-600 dark:text-gray-400">Provided backend support for new homepage experience, delivering performant APIs and reusable services.</p>
-				</div>
-				</div>
-
-				<div className="flex items-start gap-3">
-				<div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-red-100 dark:bg-red-900">
-					<span className="text-red-600 dark:text-red-300">📈</span>
-				</div>
-				<div>
-					<h4 className="font-medium text-base md:text-lg">Analytics Team</h4>
-					<p className="text-sm md:text-base text-gray-600 dark:text-gray-400">Supported backend development and infrastructure for data-driven insights and client reporting capabilities.</p>
-				</div>
-				</div>
-			</div>
-			</div>
-		</AccordionContent>
-		</AccordionItem>
-		<AccordionItem value="item-2">
-		<AccordionTrigger className="text-base md:text-lg">Datarte.art</AccordionTrigger>
-		<AccordionContent>
-			<div className="space-y-3 md:space-y-4">
-			<div className="flex justify-between items-start">
-				<div>
-				<h3 className="font-medium text-base md:text-lg">Full-stack Developer</h3>
-				<p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Mar 2021 - Aug 2022 · 1 yr 6 mos</p>
-				<p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Remote</p>
-				</div>
-			</div>
-
-			<div className="space-y-3 md:space-y-4">
-				<div className="flex items-start gap-3">
-				<div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900">
-					<span className="text-purple-600 dark:text-purple-300">💻</span>
-				</div>
-				<div>
-					<h4 className="font-medium text-base md:text-lg">Web Applications Development</h4>
-					<p className="text-sm md:text-base text-gray-600 dark:text-gray-400">Built two full-stack web applications (Datarte and OtrasManeras) for artist artwork management using ReactJs, Gatsby, WordPress, Flask, and more.</p>
-				</div>
-				</div>
-
-				<div className="flex items-start gap-3">
-				<div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900">
-					<span className="text-blue-600 dark:text-blue-300">☁️</span>
-				</div>
-				<div>
-					<h4 className="font-medium text-base md:text-lg">Cloud Infrastructure</h4>
-					<p className="text-sm md:text-base text-gray-600 dark:text-gray-400">Deployed and managed services on AWS including EC2, RDS, and S3 buckets. Maintained web applications for UK clients (CityRelay and CityRelaySolutions).</p>
-				</div>
-				</div>
-
-				<div className="flex items-start gap-3">
-				<div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
-					<span className="text-green-600 dark:text-green-300">🔄</span>
-				</div>
-				<div>
-					<h4 className="font-medium text-base md:text-lg">Data & Automation</h4>
-					<p className="text-sm md:text-base text-gray-600 dark:text-gray-400">Developed scrapers, created marketing platform migration tools, and built dashboards using Python, SQL, and Metabase.</p>
-				</div>
-				</div>
-
-				<div className="flex items-start gap-3">
-				<div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-yellow-100 dark:bg-yellow-900">
-					<span className="text-yellow-600 dark:text-yellow-300">✅</span>
-				</div>
-				<div>
-					<h4 className="font-medium text-base md:text-lg">Testing & Quality</h4>
-					<p className="text-sm md:text-base text-gray-600 dark:text-gray-400">Implemented comprehensive testing using Cypress, Pytest, and Selenium. Collaborated on identifying problems and establishing best practices.</p>
-				</div>
-				</div>
-			</div>
-			</div>
-		</AccordionContent>
-		</AccordionItem>
-		<AccordionItem value="item-3">
-		<AccordionTrigger className="text-base md:text-lg">Research Collaborator at Catholic University of Colombia</AccordionTrigger>
-		<AccordionContent>
-			<div className="space-y-3 md:space-y-4">
-			<div>
-				<h3 className="font-medium text-base md:text-lg">Research Collaborator</h3>
-				<p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Apr 2020 - Nov 2020 · 8 mos</p>
-				<p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Colombia · Remote</p>
-			</div>
-
-			<div className="space-y-3 md:space-y-4">
-				<div className="flex items-start gap-3">
-				<div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900">
-					<span className="text-purple-600 dark:text-purple-300">⌚</span>
-				</div>
-				<div>
-					<h4 className="font-medium text-base md:text-lg">Fitbit SDK Research & Development</h4>
-					<p className="text-sm md:text-base text-gray-600 dark:text-gray-400">Researched Fitbit SDK capabilities and built prototypes to collect physiological data like heart rate and calories. Developed a complete smartwatch app with real-time data transmission to a web-socket server on Heroku.</p>
-				</div>
-				</div>
-
-				<div className="flex items-start gap-3">
-				<div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900">
-					<span className="text-blue-600 dark:text-blue-300">👥</span>
-				</div>
-				<div>
-					<h4 className="font-medium text-base md:text-lg">Academic Collaboration</h4>
-					<p className="text-sm md:text-base text-gray-600 dark:text-gray-400">Collaborated with three professors and a student team, providing SDK expertise and open-source solutions. Supported research work for a bachelor&apos;s student and a project guided by Complutense University of Madrid.</p>
-				</div>
-				</div>
-			</div>
-			</div>
-		</AccordionContent>
-		</AccordionItem>
-	</Accordion>      
-	</section>
+                <div>
+                  <p className="max-w-xl text-base leading-relaxed text-ink-soft md:text-lg">
+                    {role.summary}
+                  </p>
+                  <dl className="mt-8 space-y-6">
+                    {role.highlights.map((h) => (
+                      <div key={h.label}>
+                        <dt className="text-base font-medium text-foreground">{h.label}</dt>
+                        <dd className="mt-1 max-w-xl text-sm leading-relaxed text-ink-soft md:text-base">
+                          {h.body}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

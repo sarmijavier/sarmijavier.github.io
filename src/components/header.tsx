@@ -1,50 +1,55 @@
-import { ModeToggle } from "@/components/dark-mode";
-import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";	
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
+
+const socials = [
+  { href: "https://github.com/sarmijavier", label: "GitHub", Icon: FaGithub },
+  { href: "https://www.linkedin.com/in/javier-sarmiento-28085a19a/", label: "LinkedIn", Icon: FaLinkedin },
+  { href: "https://twitter.com/SarmiJavier", label: "Twitter", Icon: FaTwitter },
+  { href: "https://www.instagram.com/sarmijavier/", label: "Instagram", Icon: FaInstagram },
+];
+
+const navLinks = [
+  { href: "#about", label: "About" },
+  { href: "#education", label: "Education" },
+  { href: "#experience", label: "Experience" },
+  { href: "#skills", label: "Skills" },
+  { href: "#projects", label: "Projects" },
+];
 
 export default function Header() {
   return (
-    <header className="fixed top-0 right-0 p-4 z-50 md:p-6">
-		<div className="flex items-center gap-4">
-			<ModeToggle />
-			<div className="fixed left-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-3">
-			<a 
-				href="https://github.com/sarmijavier" 
-				target="_blank"
-				rel="noopener noreferrer"
-				className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
-			>
-				<FaGithub size={20} />
-				<span className="sr-only">GitHub</span>
-			</a>
-			<a
-				href="https://www.linkedin.com/in/javier-sarmiento-28085a19a/"
-				target="_blank" 
-				rel="noopener noreferrer"
-				className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
-			>
-				<FaLinkedin size={20} />
-				<span className="sr-only">LinkedIn</span>
-			</a>
-			<a
-				href="https://twitter.com/SarmiJavier"
-				target="_blank"
-				rel="noopener noreferrer" 
-				className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300 transition-colors"
-			>
-				<FaTwitter size={20} />
-				<span className="sr-only">Twitter</span>
-			</a>
-			<a
-				href="https://www.instagram.com/sarmijavier/"
-				target="_blank"
-				rel="noopener noreferrer"
-				className="text-pink-600 hover:text-pink-700 dark:text-pink-400 dark:hover:text-pink-300 transition-colors"
-			>
-				<FaInstagram size={20} />
-				<span className="sr-only">Instagram</span>
-			</a>
-			</div>
-		</div>
-	</header>
+    <>
+      <header className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-5 py-5 md:px-10 md:py-7">
+        <a
+          href="#top"
+          className="font-mono text-xs uppercase tracking-[0.2em] text-foreground/90 hover:text-signal transition-colors"
+        >
+          Javier Sarmiento
+        </a>
+        <nav className="hidden sm:flex items-center gap-7 font-mono text-xs uppercase tracking-[0.16em] text-ink-soft">
+          {navLinks.map((link) => (
+            <a key={link.href} href={link.href} className="hover:text-foreground transition-colors">
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </header>
+
+      <div className="hidden md:flex fixed left-6 top-1/2 z-40 -translate-y-1/2 flex-col gap-4">
+        {socials.map(({ href, label, Icon }) => (
+          <a
+            key={label}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-ink-soft hover:text-signal transition-colors"
+          >
+            <Icon size={16} />
+            <span className="sr-only">{label}</span>
+          </a>
+        ))}
+      </div>
+    </>
   );
 }
+
+export { socials };

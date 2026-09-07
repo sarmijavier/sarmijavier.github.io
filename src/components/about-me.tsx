@@ -1,62 +1,74 @@
 import Image from "next/image";
+import Reveal from "@/components/reveal";
 
-export default async function AboutMe() {
+const stack = ["Python", "TypeScript", "LangChain", "AWS", "Docker", "PostgreSQL"];
+const exploring = [
+  "LLM-based agents and emerging protocols like MCP and A2A",
+  "Applied cybersecurity, from a builder's side of the fence",
+  "Investment strategy",
+  "Chess, when there's time for it",
+];
+
+export default function AboutMe() {
   return (
-	<section className="flex flex-col md:flex-row gap-8 justify-between">
-	<div>
-		<h1 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-		About Me
-		</h1>
-		<div className="space-y-4 md:space-y-6 max-w-2xl">
-		<p className="text-base md:text-lg leading-relaxed">
-			I&apos;m a software engineer with over 3 years of experience building and maintaining software applications using 
-			<span className="font-semibold text-purple-600 dark:text-purple-400"> Python</span>,
-			<span className="font-semibold text-blue-600 dark:text-blue-400"> TypeScript</span>, and a wide range of modern tools and frameworks.
-		</p>
-		
-		<p className="text-base md:text-lg leading-relaxed">
-			While I enjoy working across the stack, my true passion lies in 
-			<span className="font-semibold"> backend development</span>—designing robust systems, solving complex problems, and helping products scale.
-		</p>
+    <section id="about" className="border-t border-line px-5 py-24 md:px-10 md:py-40">
+      <div className="mx-auto grid max-w-6xl gap-14 md:grid-cols-[1.1fr_0.9fr] md:gap-20">
+        <Reveal className="max-w-xl">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">About</h2>
 
-		<p className="text-base md:text-lg leading-relaxed">
-			I&apos;ve worked with technologies like 
-			<span className="font-mono bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">Django</span>,
-			<span className="font-mono bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">Flask</span>,
-			<span className="font-mono bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">React</span>,
-			<span className="font-mono bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">SQL</span>,
-			<span className="font-mono bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">Git</span>, and
-			<span className="font-mono bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">AWS</span>.
-			I thrive in agile environments where learning and collaboration are at the core.
-		</p>
+          <div className="mt-8 space-y-5 text-base leading-relaxed text-ink-soft md:text-lg">
+            <p>
+              I&apos;m an AI engineer and software developer with over three years of
+              experience building, deploying, and securing production systems, currently
+              completing a scholarship-funded Master&apos;s in{" "}
+              <span className="text-foreground">
+                Computer Security Engineering and Artificial Intelligence
+              </span>
+              .
+            </p>
+            <p>
+              I combine solid full-stack and backend engineering with hands-on machine
+              learning work, LLM-based agents, NLP, and clustering models, shaped by a{" "}
+              <span className="text-foreground">security-first mindset</span> from academic
+              and professional cybersecurity experience.
+            </p>
+            <p>
+              I use modern AI tools daily, Claude, Gemini, Cursor, LangChain, to move faster
+              and think clearer, and I&apos;m comfortable owning a problem end to end, from
+              prototype to production.
+            </p>
+          </div>
 
-		<p className="text-base md:text-lg leading-relaxed">
-			What drives me is continuous improvement—both in code and in myself. I&apos;m self-taught, proactive, and always eager to take on new challenges.
-		</p>
+          <div className="mt-10 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs uppercase tracking-[0.14em] text-ink-soft">
+            {stack.map((tool) => (
+              <span key={tool}>{tool}</span>
+            ))}
+          </div>
 
-		<div className="mt-6 md:mt-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-			<h2 className="text-lg md:text-xl font-semibold mb-3 flex items-center gap-2">
-			<span className="text-xl md:text-2xl">💡</span> Currently exploring
-			</h2>
-			<ul className="list-disc list-inside space-y-2 text-base md:text-lg">
-			<li>Artificial Intelligence and Machine Learning</li>
-			<li>Growing as a software engineer</li>
-			<li>Investment strategies</li>
-			<li>Chess strategies in free time</li>
-			</ul>
-		</div>
-		</div>
-	</div>
-	<div className="flex items-center justify-center md:justify-start relative w-full md:w-[500px] h-[300px] md:h-[600px]">    
-		<Image
-		src="/IMG_4533.jpeg"
-		alt="Picture of the author"
-		fill
-		className="object-contain rounded-lg"
-		sizes="(max-width: 768px) 100vw, 500px"
-		priority
-		/>
-	</div>
-	</section>
+          <div className="mt-14 border-t border-line pt-8">
+            <h3 className="font-mono text-xs uppercase tracking-[0.18em] text-ink-soft">
+              Currently exploring
+            </h3>
+            <ul className="mt-4 space-y-2.5 text-base text-foreground md:text-lg">
+              {exploring.map((item) => (
+                <li key={item} className="leading-snug">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.15} className="relative aspect-[4/5] w-full overflow-hidden md:mt-3">
+          <Image
+            src="/IMG_4533.jpeg"
+            alt="Portrait of Javier Sarmiento"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 40vw"
+          />
+        </Reveal>
+      </div>
+    </section>
   );
 }

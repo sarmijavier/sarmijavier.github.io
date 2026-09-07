@@ -18,8 +18,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sarmijavier",
-  description: "Sarmijavier",
+  title: "Javier Sarmiento",
+  description:
+    "AI Engineer and Software Developer working across production ML systems, backend engineering, and applied security.",
   icons: {
     icon: "/icon.png",
   },
@@ -33,27 +34,20 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="dark">
       <Head>
         <link rel="icon" type="image/x-icon" href="/icon.ico"></link>
       </Head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          forcedTheme="dark"
           disableTransitionOnChange
         >
           <Header />
-
-          <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-            <div className="max-w-7xl mx-auto">
-              {children}
-            </div>
-          </main>
-
+          <main>{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

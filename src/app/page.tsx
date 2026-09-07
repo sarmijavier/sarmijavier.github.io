@@ -1,13 +1,18 @@
+import Hero from "@/components/hero";
 import AboutMe from "@/components/about-me";
+import Education from "@/components/education";
 import Experience from "@/components/experience";
+import Skills from "@/components/skills";
 import Projects from "@/components/projects";
 
-
-export default async function Home() {
+export default function Home() {
   return (
-    <div className="p-4 md:p-8">
+    <div>
+      <Hero />
       <AboutMe />
+      <Education />
       <Experience />
+      <Skills />
       <Projects />
     </div>
   );
