@@ -5,7 +5,6 @@ import * as React from "react"
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,10 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Javier Sarmiento",
   description:
-    "AI Engineer and Software Developer working across production ML systems, backend engineering, and applied security.",
-  icons: {
-    icon: "/icon.png",
-  },
+    "AI engineer with a security-first mindset: 3+ years shipping production software and a Master's in Computer Security Engineering and AI.",
 };
 
 
@@ -35,9 +31,6 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning className="dark">
-      <Head>
-        <link rel="icon" type="image/x-icon" href="/icon.ico"></link>
-      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background text-foreground`}
       >
@@ -46,8 +39,14 @@ export default function RootLayout({
           forcedTheme="dark"
           disableTransitionOnChange
         >
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-20 focus:z-[60] focus:bg-signal focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-signal-ink"
+          >
+            Skip to content
+          </a>
           <Header />
-          <main>{children}</main>
+          <main id="main">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

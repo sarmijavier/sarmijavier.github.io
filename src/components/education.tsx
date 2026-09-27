@@ -1,5 +1,3 @@
-import Reveal from "@/components/reveal";
-
 type Entry = {
   school: string;
   detail: string;
@@ -12,13 +10,13 @@ const entries: Entry[] = [
   {
     school: "Universitat Rovira i Virgili",
     detail: "Master's Degree in Computer Security Engineering and Artificial Intelligence",
-    period: "2025 to 2026",
+    period: "2025–2026",
     location: "Tarragona, ES · Scholarship",
   },
   {
     school: "Universidad Católica de Colombia",
     detail: "Bachelor in Computer Science",
-    period: "2017 to 2022",
+    period: "2017–2022",
     location: "Colombia",
   },
   {
@@ -32,45 +30,28 @@ const entries: Entry[] = [
 
 export default function Education() {
   return (
-    <section id="education" className="border-t border-line px-5 py-24 md:px-10 md:py-40">
-      <div className="mx-auto max-w-5xl">
-        <Reveal>
-          <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
-            Education
-          </h2>
-        </Reveal>
+    <section id="education" className="border-t border-line px-5 py-24 md:px-10 md:py-32">
+      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] md:gap-12">
+        <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+          Education
+        </h2>
 
-        <div className="mt-12 divide-y divide-line border-t border-line md:mt-16">
-          {entries.map((entry, i) => (
-            <Reveal key={entry.school} delay={Math.min(i * 0.08, 0.24)}>
-              <div className="grid gap-2 py-8 md:grid-cols-[1.4fr_2fr] md:gap-12 md:py-10">
-                <div>
-                  <h3 className="text-xl font-semibold text-foreground md:text-2xl">
-                    {entry.school}
-                  </h3>
-                  {entry.period && (
-                    <p className="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-ink-soft">
-                      {entry.period}
-                    </p>
-                  )}
-                  <p className="font-mono text-xs uppercase tracking-[0.12em] text-ink-soft">
-                    {entry.location}
-                  </p>
-                </div>
-                <div>
-                  <p className="max-w-xl text-base leading-relaxed text-ink-soft md:text-lg">
-                    {entry.detail}
-                  </p>
-                  {entry.note && (
-                    <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-soft md:text-base">
-                      {entry.note}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </Reveal>
+        <ol className="border-t border-line">
+          {entries.map((entry) => (
+            <li key={entry.school} className="border-b border-line py-7 md:py-8">
+              <h3 className="text-lg font-semibold text-foreground md:text-xl">{entry.detail}</h3>
+              <p className="mt-1 text-base text-foreground/80">{entry.school}</p>
+              <p className="mt-3 font-mono text-[0.8rem] tabular-nums text-ink-soft">
+                {[entry.period, entry.location].filter(Boolean).join(" · ")}
+              </p>
+              {entry.note && (
+                <p className="mt-4 max-w-[60ch] text-sm leading-relaxed text-ink-soft md:text-base">
+                  {entry.note}
+                </p>
+              )}
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

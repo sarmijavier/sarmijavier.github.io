@@ -1,28 +1,22 @@
-import Reveal from "@/components/reveal";
-
+// Grouped by what an interviewer is checking for, most relevant first. Tools
+// already named in About (Claude, Cursor, Gemini) are not repeated here.
 const categories: { label: string; items: string[] }[] = [
   {
     label: "AI & machine learning",
     items: [
-      "Python",
-      "TensorFlow",
       "PyTorch",
+      "TensorFlow",
       "Scikit-learn",
       "pandas",
+      "LangChain",
+      "LLM-based agents",
+      "MCP / A2A",
       "NLP",
       "Clustering",
-      "LLM-based agents",
-      "Generative AI",
-      "LangChain",
-      "MCP / A2A",
     ],
   },
   {
-    label: "AI-assisted development",
-    items: ["Claude", "Claude Code", "Gemini", "Cursor"],
-  },
-  {
-    label: "Cybersecurity",
+    label: "Security",
     items: [
       "Secure SDLC",
       "Security by design",
@@ -32,47 +26,40 @@ const categories: { label: string; items: string[] }[] = [
     ],
   },
   {
-    label: "Languages",
-    items: ["Python", "TypeScript", "Java", "C++"],
+    label: "Software engineering",
+    items: ["Python", "TypeScript", "Java", "C++", "Django", "Flask", "Angular", "React"],
   },
   {
-    label: "Frameworks & tools",
-    items: ["Angular", "Django", "Flask", "React", "Pytest", "Selenium"],
-  },
-  {
-    label: "Databases",
-    items: ["PostgreSQL", "SQL", "MongoDB"],
-  },
-  {
-    label: "Cloud & DevOps",
-    items: ["AWS (EC2, RDS, S3)", "Docker", "Git", "Linux"],
+    label: "Data, cloud & testing",
+    items: [
+      "PostgreSQL",
+      "MongoDB",
+      "AWS (EC2, RDS, S3)",
+      "Docker",
+      "Linux",
+      "Git",
+      "Pytest",
+      "Selenium",
+    ],
   },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="border-t border-line px-5 py-24 md:px-10 md:py-40">
-      <div className="mx-auto max-w-5xl">
-        <Reveal>
-          <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
-            Skills
-          </h2>
-        </Reveal>
+    <section id="skills" className="border-t border-line px-5 py-24 md:px-10 md:py-32">
+      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] md:gap-12">
+        <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">Skills</h2>
 
-        <div className="mt-12 grid gap-10 md:mt-16 md:grid-cols-2 md:gap-x-16 md:gap-y-12">
-          {categories.map((category, i) => (
-            <Reveal key={category.label} delay={Math.min(i * 0.05, 0.3)}>
-              <h3 className="font-mono text-xs uppercase tracking-[0.18em] text-ink-soft">
-                {category.label}
-              </h3>
-              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-base text-foreground md:text-lg">
-                {category.items.map((item) => (
-                  <span key={item}>{item}</span>
-                ))}
-              </div>
-            </Reveal>
+        <dl className="grid gap-10 sm:grid-cols-2 sm:gap-x-12">
+          {categories.map((category) => (
+            <div key={category.label}>
+              <dt className="text-base font-medium text-foreground">{category.label}</dt>
+              <dd className="mt-3 text-base leading-relaxed text-ink-soft">
+                {category.items.join(" · ")}
+              </dd>
+            </div>
           ))}
-        </div>
+        </dl>
       </div>
     </section>
   );

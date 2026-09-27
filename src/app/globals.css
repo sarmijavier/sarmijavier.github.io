@@ -44,11 +44,11 @@
 }
 
 /*
-  Cinematic editorial theme. Locked to one register (dark) rather than
-  toggling light/dark: a scroll-scrubbed video hero and a theme switch
-  fight each other, so the whole page commits to one register instead.
+  Dark editorial theme. `signal` has one job: it marks things a reader can
+  verify or act on (links to code, contact, focus). Nothing decorative is green.
 */
 :root {
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
   --radius: 0px;
   --background: #0a0b0d;
   --foreground: #f2efe8;
@@ -85,17 +85,30 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   html {
     @apply scroll-smooth;
+    scroll-padding-top: 5rem;
+    scrollbar-color: rgb(242 239 232 / 22%) var(--background);
+    color-scheme: dark;
   }
   body {
     @apply bg-background text-foreground;
+    caret-color: var(--signal);
   }
   ::selection {
     background: var(--signal);
     color: var(--signal-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+  }
+  a {
+    text-underline-offset: 0.25em;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color 150ms ease;
   }
 }
 
@@ -105,9 +118,66 @@
   }
 }
 
+/* Press feedback for the solid call-to-action buttons. */
+.press {
+  transition:
+    transform 160ms var(--ease-out-strong),
+    filter 150ms ease;
+}
+.press:active {
+  transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+  .press:hover {
+    filter: brightness(1.1);
+  }
+}
+
+/* Mobile menu drops out of the header and leaves the same way, a little faster. */
+.menu-panel {
+  opacity: 0;
+  transform: translateY(-8px);
+  visibility: hidden;
+  transition:
+    opacity 150ms var(--ease-out-strong),
+    transform 150ms var(--ease-out-strong),
+    visibility 0s linear 150ms;
+}
+.menu-panel[data-open="true"] {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition:
+    opacity 200ms var(--ease-out-strong),
+    transform 200ms var(--ease-out-strong),
+    visibility 0s;
+}
+
+/* The page's one authored motion moment: the hero resolves into focus on load. */
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(6px);
+  }
+}
+
+.arrive {
+  animation: arrive 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--arrive-step, 0) * 90ms);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] {
-    opacity: 1 !important;
-    transform: none !important;
+  html {
+    scroll-behavior: auto;
+  }
+  .arrive {
+    animation: none;
+  }
+  .press:active {
+    transform: none;
+  }
+  .menu-panel {
+    transform: none;
   }
 }
