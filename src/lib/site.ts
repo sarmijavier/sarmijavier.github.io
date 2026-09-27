@@ -1,5 +1,4 @@
-import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export const GITHUB_URL = "https://github.com/sarmijavier";
 
@@ -15,8 +14,6 @@ export const CONTACT_EMAIL: string | null = null;
 export const socials = [
   { href: GITHUB_URL, label: "GitHub", Icon: FaGithub },
   { href: LINKEDIN_URL, label: "LinkedIn", Icon: FaLinkedin },
-  { href: "https://twitter.com/SarmiJavier", label: "X", Icon: FaXTwitter },
-  { href: "https://www.instagram.com/sarmijavier/", label: "Instagram", Icon: FaInstagram },
 ];
 
 export const navLinks = [
